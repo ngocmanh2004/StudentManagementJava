@@ -58,14 +58,14 @@ public class Main {
 
         Date d = new SimpleDateFormat("yyyy-MM-dd").parse(ns);
         dao.addStudent(new Student(ma, ten, d, nganh, diem, lop));
-        System.out.println("✅ Thêm thành công!");
+        System.out.println("Thêm thành công!");
     }
 
     private static void xoaSV() throws Exception {
         System.out.print("Mã SV: ");
         String ma = sc.nextLine();
-        if (dao.deleteStudent(ma)) System.out.println("✅ Xóa thành công!");
-        else System.out.println("❌ Không tìm thấy!");
+        if (dao.deleteStudent(ma)) System.out.println("Xóa thành công!");
+        else System.out.println("Không tìm thấy!");
     }
 
     private static void suaSV() throws Exception {
@@ -75,8 +75,8 @@ public class Main {
         String ten = chuanHoa(sc.nextLine());
         System.out.print("Điểm mới: ");
         double diem = Double.parseDouble(sc.nextLine());
-        if (dao.updateStudent(ma, ten, diem)) System.out.println("✅ Sửa thành công!");
-        else System.out.println("❌ Không tìm thấy!");
+        if (dao.updateStudent(ma, ten, diem)) System.out.println("Sửa thành công!");
+        else System.out.println("Không tìm thấy!");
     }
 
     private static void inDanhSach(String condition) throws Exception {
@@ -106,19 +106,19 @@ public class Main {
 
     // ====== Validation ======
     private static boolean kiemTraHopLe(String ma, String ten, String ns, String nganh, double diem) {
-        if (!ma.matches("\\d{10}")) { System.out.println("❌ Mã SV không hợp lệ!"); return false; }
-        if (nganh.equals("CNTT") && !ma.startsWith("455105")) { System.out.println("❌ Sai định dạng mã CNTT!"); return false; }
-        if (nganh.equals("KTPM") && !ma.startsWith("455109")) { System.out.println("❌ Sai định dạng mã KTPM!"); return false; }
+        if (!ma.matches("\\d{10}")) { System.out.println("Mã SV không hợp lệ!"); return false; }
+        if (nganh.equals("CNTT") && !ma.startsWith("455105")) { System.out.println("Sai định dạng mã CNTT!"); return false; }
+        if (nganh.equals("KTPM") && !ma.startsWith("455109")) { System.out.println("Sai định dạng mã KTPM!"); return false; }
         try {
             Date d = new SimpleDateFormat("yyyy-MM-dd").parse(ns);
             Calendar c = Calendar.getInstance();
             int yearNow = c.get(Calendar.YEAR);
             c.setTime(d);
             int tuoi = yearNow - c.get(Calendar.YEAR);
-            if (tuoi < 15 || tuoi > 110) { System.out.println("❌ Tuổi không hợp lý!"); return false; }
-        } catch (Exception e) { System.out.println("❌ Ngày sinh không hợp lệ!"); return false; }
-        if (diem < 0 || diem > 10) { System.out.println("❌ Điểm không hợp lệ!"); return false; }
-        if (!nganh.equals("CNTT") && !nganh.equals("KTPM")) { System.out.println("❌ Ngành không hợp lệ!"); return false; }
+            if (tuoi < 15 || tuoi > 110) { System.out.println("Tuổi không hợp lý!"); return false; }
+        } catch (Exception e) { System.out.println("Ngày sinh không hợp lệ!"); return false; }
+        if (diem < 0 || diem > 10) { System.out.println("Điểm không hợp lệ!"); return false; }
+        if (!nganh.equals("CNTT") && !nganh.equals("KTPM")) { System.out.println("Ngành không hợp lệ!"); return false; }
         return true;
     }
 
